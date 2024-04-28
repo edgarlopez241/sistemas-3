@@ -17,7 +17,8 @@ CREATE TABLE public."Usuario"
     telefono character varying(11),
     fecha_nacimiento date,
     genero "char",
-    password_hash character varying(100);
+    password_hash character varying(100),
+    rol "char",
     PRIMARY KEY (id_usuario)
 );
 
