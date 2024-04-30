@@ -1,10 +1,10 @@
 const pool = require('../db');
 
 const insertarUsuario = async(req,res,next) =>{
-    const { nombre, apellido, correo, 
-        telefono, fecha_nacimiento, genero, password, rol} = req.body;
-
     try {
+        const { nombre, apellido, correo, 
+            telefono, fecha_nacimiento, genero, password, rol} = req.body;
+    
         const result = await pool.query('INSERT INTO public."Usuario"(nombre, apellido, correo, telefono, fecha_nacimiento, genero, password_hash, rol)' +
          "VALUES ($1, $2, $3, $4, $5, $6, crypt($7, gen_salt('md5')), $8);",[
             nombre, 
@@ -16,6 +16,7 @@ const insertarUsuario = async(req,res,next) =>{
             password,
             rol
         ]);
+        res.json(result.rowCount);
     } catch (error) {
         next(error);
     }
@@ -42,8 +43,7 @@ const actualizarUsuario = async (req,res,next) =>{
         const { nombre, apellido, nuevocorreo, 
         telefono, fecha_nacimiento, genero, password, rol } = req.body;
 
-        const result = await pool.query('UPDATE public."Usuario" SET nombre=$1, apellido=$2, correo=$3, telefono=$4, fecha_nacimiento=$5, genero=$6,' + 
-        "password_hash=crypt($7,gen_salt('md5')), rol=$8 WHERE correo=$9;", 
+        const result = await pool.query('UPDATE public."Usuario" SET nombre=$1, apellido=$2, correo=$3, telefono=$4, fecha_nacimiento=$5, genero=$6, password_hash=crypt($7,gen_salt($8)), rol=$9 WHERE correo=$10 RETURNING id_usuario;', 
         [
             nombre,
             apellido,
@@ -52,6 +52,7 @@ const actualizarUsuario = async (req,res,next) =>{
             fecha_nacimiento,
             genero,
             password,
+            'md5',
             rol,
             correo
         ]);

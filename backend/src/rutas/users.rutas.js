@@ -10,7 +10,7 @@ router.get('/usuario/:correo', obtenerDatosUsuario);
 
 router.post('/usuario', insertarUsuario);
 
-router.delete('/', (req,res) => {
+router.delete('/usuario', (req,res) => {
     res.send('Hello world');
 });
 
