@@ -24,7 +24,7 @@ const actualizarSubscripcion = async(req,res,next)=>{
         const { id_usuario } = req.params;
         const { tipo_subscripcion, modalidad_temporal, fecha_vencimiento } = req.body;
 
-        const result = await pool.query('UPDATE public."SubscripcionUsuario" SET tipo_subscripcion=$1, modalidad_temporal=$2, fecha_vencimiento=$3 WHERE id_usuario=$4 AND estatus_subscripcion=$5;',
+        const result = await pool.query('UPDATE public."SubscripcionUsuario" SET tipo_subscripcion=$1, modalidad_temporal=$2, fecha_vencimiento=$3 WHERE id_usuario=$4 AND estatus_subscripcion=$5 RETURNING *;',
         [
             tipo_subscripcion,
             modalidad_temporal,
@@ -49,7 +49,7 @@ const cambiarEstatus = async (req,res,next)=>{
         const { id_usuario } = req.params;
         const { estatus } = req.body;
 
-        const result = await pool.query('UPDATE public."SubscripcionUsuario" SET estatus_subscripcion=$1 WHERE id_usuario=$2;',
+        const result = await pool.query('UPDATE public."SubscripcionUsuario" SET estatus_subscripcion=$1 WHERE id_usuario=$2 RETURNING *;',
         [
             estatus,
             id_usuario

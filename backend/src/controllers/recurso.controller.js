@@ -41,7 +41,7 @@ const cambiarEstatusRecurso = async(req,res,next)=>{
         const { id_usuario } = req.params;
         const { estatus_recurso, nombre_recurso } = req.body;
 
-        const result = await pool.query('UPDATE public."Recurso" SET estatus_recurso=$1 WHERE id_usuario=$2 AND nombre_recurso=$3;',
+        const result = await pool.query('UPDATE public."Recurso" SET estatus_recurso=$1 WHERE id_usuario=$2 AND nombre_recurso=$3 RETURNING estatus_recurso;',
         [
             estatus_recurso,
             id_usuario,
