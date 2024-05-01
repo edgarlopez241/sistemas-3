@@ -31,7 +31,12 @@ const validarPassword = async (req,res,next) =>{
             password,
             correo
         ]);
-        return res.send(JSON.stringify(result.rows[0]));
+        if(result.rows.length === 0){
+            return res.status(404).json({
+                message: "Usuario no encontrado"
+            });
+        }
+        res.json(result.rows[0]);
     } catch (error) {
         next(error);
     }

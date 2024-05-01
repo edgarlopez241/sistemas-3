@@ -5,6 +5,7 @@ import './index.css'
 import { BrowserRouter as Router } from 'react-router-dom'
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 import Login from './pages/Login.jsx'
+import TestNutricional from './pages/TestNutricional.jsx'
 
 const router = createBrowserRouter([
 {
@@ -15,6 +16,11 @@ const router = createBrowserRouter([
 {
   path:'/login',
   element:<Login/>,
+  errorElement:<div>404</div>
+},
+{
+  path:'/testnutricional',
+  element:<TestNutricional/>,
   errorElement:<div>404</div>
 }]);
 

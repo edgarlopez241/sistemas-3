@@ -1,11 +1,13 @@
 import { Avatar, Box, Button, Grid, Paper, TextField, Typography } from "@mui/material"
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import {useState, useEffect} from 'react'
 
 const Login = ()=>{
     const paperStyle = {padding:20, height:'80vh', width:300, margin:'20px auto', backgroundColor:'#AAB28C', color:'white'};
     const avatarStyle = {backgroundColor:'white'};
     const [usuario, setUsuario] = useState({correo:"", password:""});
+    const navigate = useNavigate();
+
     const validEmail = new RegExp(
         '^[a-zA-Z0-9._:$!%-]+@[a-zA-Z0-9.-]+.[a-zA-Z]$'
      );
@@ -14,13 +16,22 @@ const Login = ()=>{
         e.preventDefault();
         if (validEmail.test(usuario.correo)) {
             const res = await fetch(`http://localhost:4000/usuario/validar/${usuario.correo}`,{
-        method: 'POST', body:JSON.stringify(usuario), headers: { "Content-Type": "application/json" } });
-            
-        const data = await res.text();
-            
-        console.log(JSON.stringify(usuario));
+        method: 'POST', body:JSON.stringify(usuario), 
+        headers: { "Content-Type": "application/json" } });
+
+        try {
+            const data = await res.json();
+            console.log(data);
+            const {match} = data;
+            if (match){
+                navigate("/testnutricional", {state:{correo: usuario.correo}});
+            }
+        } catch (error) {
+            console.log(error)
+        } 
         }
     }
+
 
     const handleChange = e =>{
         setUsuario({...usuario, [e.target.name]: e.target.value})
