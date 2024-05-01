@@ -6,7 +6,6 @@ import { BrowserRouter as Router } from 'react-router-dom'
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 import Login from './pages/Login.jsx'
 
-
 const router = createBrowserRouter([
 {
   path:'/',
@@ -17,7 +16,6 @@ const router = createBrowserRouter([
   path:'/login',
   element:<Login/>,
   errorElement:<div>404</div>
-
 }]);
 
 ReactDOM.createRoot(document.getElementById('root')).render(
