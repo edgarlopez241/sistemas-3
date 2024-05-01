@@ -6,6 +6,7 @@ import Button from "../Button";
 import MenuSvg from "../../assets/svg/MenuSvg";
 import {HamburguerMenu} from "../Design/Header"
 import { useState } from "react";
+
 const Header = () => {
  const pathname = useLocation();
  const [openNavigation, setOpenNavigation] = useState(false)
@@ -19,11 +20,13 @@ const Header = () => {
         disablePageScroll()
     }
  }
+
  const handleClick = () => {
     if(!openNavigation) return;
     enablePageScroll()
     setOpenNavigation(false)
  }
+
   return (
     <div className={`fixed top-0 left-0 w-full z-50 
                     border-b border-n-6
@@ -60,6 +63,7 @@ const Header = () => {
                 >
                     Registrar
                 </a>
+
                 <Button className="hidden lg:flex" href="/login">
                     Iniciar Sesion
                 </Button>
