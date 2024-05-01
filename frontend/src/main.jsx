@@ -5,11 +5,7 @@ import './index.css'
 import { BrowserRouter as Router } from 'react-router-dom'
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 import Login from './pages/Login.jsx'
-import Register from './pages/Register.jsx'
-import '@fontsource/roboto/300.css';
-import '@fontsource/roboto/400.css';
-import '@fontsource/roboto/500.css';
-import '@fontsource/roboto/700.css';
+import TestNutricional from './pages/TestNutricional.jsx'
 
 const router = createBrowserRouter([
 {
@@ -23,8 +19,8 @@ const router = createBrowserRouter([
   errorElement:<div>404</div>
 },
 {
-  path:'/register',
-  element:<Register/>,
+  path:'/testnutricional',
+  element:<TestNutricional/>,
   errorElement:<div>404</div>
 }]);
 
