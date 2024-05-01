@@ -31,7 +31,7 @@ const validarPassword = async (req,res,next) =>{
             password,
             correo
         ]);
-        return res.json(result.rows[0].match);
+        return res.send(JSON.stringify(result.rows[0]));
     } catch (error) {
         next(error);
     }
