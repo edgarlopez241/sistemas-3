@@ -73,6 +73,7 @@ function Register() {
     return re.test(password);
 };
 
+
   return (
     <ThemeProvider theme={theme}>
       <Container component="main" maxWidth="xs">
