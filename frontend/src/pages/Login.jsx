@@ -6,6 +6,7 @@ const Login = ()=>{
     const paperStyle = {padding:20, height:'80vh', width:300, margin:'20px auto', backgroundColor:'#AAB28C', color:'white'};
     const avatarStyle = {backgroundColor:'white'};
     const [usuario, setUsuario] = useState({correo:"", password:""});
+    const [validado, setValidado] = useState("");
     const navigate = useNavigate();
 
     const validEmail = new RegExp(
@@ -25,6 +26,9 @@ const Login = ()=>{
             const {match} = data;
             if (match){
                 navigate("/testnutricional", {state:{correo: usuario.correo}});
+            }
+            else{
+                setValidado("Usuario o contraseña no valido");
             }
         } catch (error) {
             console.log(error)
@@ -56,6 +60,7 @@ const Login = ()=>{
                 <Button variant="contained" color="success" type="submit">Iniciar seción</Button>
             </form>
             <Link>No tiene una cuenta? Registrese!</Link>
+            <div>{validado}</div>
             </Grid>
             </Paper>
         </Grid>
