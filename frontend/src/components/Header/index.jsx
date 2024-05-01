@@ -64,7 +64,7 @@ const Header = () => {
                     Registrar
                 </a>
 
-                <Button className="hidden lg:flex" href="#login">
+                <Button className="hidden lg:flex" href="/login">
                     Iniciar Sesion
                 </Button>
                 <Button 
