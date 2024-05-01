@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import Container from '@mui/material/Container';
+import { useNavigate } from 'react-router-dom';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import TextField from '@mui/material/TextField';
@@ -22,6 +23,7 @@ const theme = createTheme({
 });
 
 function Register() {
+  const navigate = useNavigate();
   const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('');
   const [email, setEmail] = useState('');
@@ -34,8 +36,68 @@ function Register() {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    setSubmitted(true);
-  };
+  console.log('handleSubmit called'); // Verifica si se llama a handleSubmit
+  console.log('firstName', firstName); // Verifica el valor de firstName
+  // Haz lo mismo para las otras variables de estado
+  setSubmitted(true);
+  
+  console.log('firstName', firstName); // Verifica el valor de firstName
+  // Haz lo mismo para las otras variables de estado
+  setSubmitted(true);
+  
+  try {
+    // Primero, verifica si el correo electrónico ya está registrado
+    const checkEmailRes = await fetch(`http://localhost:5173/usuario/checkEmail/${email}`);
+    if (!checkEmailRes.ok) {
+      throw new Error(`HTTP error! status: ${checkEmailRes.status}`);
+    }
+    if (!checkEmailRes.headers.get('content-type').includes('application/json')) {
+      throw new Error('Response is not JSON');
+    }
+    const checkEmailData = await checkEmailRes.json();
+  
+    if (checkEmailData.exists) {
+      // Si el correo electrónico ya está registrado, muestra un mensaje de error
+      setValidado("El correo ya está registrado");
+    } else {
+      // Si el correo electrónico no está registrado, procede a registrar al usuario
+      const registerRes = await fetch('http://localhost:5173/register', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          firstName,
+          lastName,
+          email,
+          password,
+          birthDate,
+          gender,
+          phoneNumber,
+          role,
+        }),
+      });
+  
+      if (!registerRes.ok) {
+        throw new Error(`HTTP error! status: ${registerRes.status}`);
+      }
+      if (!registerRes.headers.get('content-type').includes('application/json')) {
+        throw new Error('Response is not JSON');
+      }
+      const registerData = await registerRes.json();
+      console.log(registerData);
+  
+      // Si el registro fue exitoso, navega a "/main"
+      if (registerData.success) {
+        navigate("/main", {state:{correo: email}});
+      } else {
+        setValidado("Hubo un error al registrar al usuario");
+      }
+    }
+  } catch (error) {
+    console.log('There was a problem with the fetch operation: ' + error.message);
+  }
+};
 
   const validateName = (name) => {
     if (!name) return false;
@@ -72,7 +134,6 @@ function Register() {
     const re = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%?&])[A-Za-z\d@$!%?&]{8,}$/;
     return re.test(password);
 };
-
 
   return (
     <ThemeProvider theme={theme}>
@@ -200,14 +261,7 @@ function Register() {
             error={submitted && !validatePhoneNumber()}
             helperText={submitted && !validatePhoneNumber() ? (phoneNumber ? 'El teléfono solo debe contener números' : 'El campo teléfono no puede estar vacío') : ''}
           />
-          <Button
-            type="submit"
-            fullWidth
-            variant="contained"
-            color="primary"
-          >
-            Register
-          </Button>
+          <Button variant="contained" color="success" type="submit">Registrarse</Button>
         </Box>
       </Container>
     </ThemeProvider>
