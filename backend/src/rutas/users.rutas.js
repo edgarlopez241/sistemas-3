@@ -16,6 +16,6 @@ router.delete('/usuario', (req,res) => {
 
 router.put('/usuario/:correo', actualizarUsuario);
 
-router.get('/usuario/validar/:correo', validarPassword);
+router.post('/usuario/validar/:correo', validarPassword);
 
 module.exports = router;
