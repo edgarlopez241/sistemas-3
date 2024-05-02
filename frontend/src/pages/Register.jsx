@@ -47,7 +47,7 @@ function Register() {
   
   try {
     // Primero, verifica si el correo electrónico ya está registrado
-    const checkEmailRes = await fetch(`http://localhost:5173/usuario/checkEmail/${email}`);
+    const checkEmailRes = await fetch(`http://localhost:4000/usuario/checkEmail/${email}`);
     if (!checkEmailRes.ok) {
       throw new Error(`HTTP error! status: ${checkEmailRes.status}`);
     }
@@ -61,7 +61,7 @@ function Register() {
       setValidado("El correo ya está registrado");
     } else {
       // Si el correo electrónico no está registrado, procede a registrar al usuario
-      const registerRes = await fetch('http://localhost:5173/register', {
+      const registerRes = await fetch('http://localhost:4000/register', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
