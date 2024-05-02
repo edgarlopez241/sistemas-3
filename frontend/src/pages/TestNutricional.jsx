@@ -43,7 +43,7 @@ const TestNutricional = ()=>{
             try {
                 const data = await res.text();
                 console.log(data);
-                navigate('/menus',{state:{correo:correo}});
+                navigate('/menu',{state:{correo:correo}});
             } catch (error) {
                 console.log(error);
             }
@@ -64,7 +64,7 @@ const TestNutricional = ()=>{
         obtenerUsuario();
     },[]);
     return(
-       <Grid>
+       <Grid justifyContent="center">
         <Paper elevation={3} style={paperStyle}>
         <Grid  container direction="column" align="center">
         <Avatar style={avatarStyle} alt="Logo" src="src/assets/nutrition.png" sx={{ width: 56, height: 56 }}/>
@@ -125,6 +125,12 @@ const TestNutricional = ()=>{
             <Button variant="contained" color="success" type="submit">Guardar</Button>
             </Container>
         </form>
+        <Grid alignItems={""} justifyContent="center">
+        <Button variant="contained" 
+        onClick={()=>{navigate('/menu', {state:{correo:correo}})}}>
+            Volver
+        </Button>
+        </Grid>
         </Paper>
        </Grid>
     )
