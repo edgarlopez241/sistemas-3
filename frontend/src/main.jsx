@@ -7,6 +7,7 @@ import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 import Login from './pages/Login.jsx'
 import TestNutricional from './pages/TestNutricional.jsx'
 import Register from './pages/Register.jsx'
+import Menu from './pages/Menu.jsx'
 
 const router = createBrowserRouter([
 {
@@ -28,6 +29,11 @@ const router = createBrowserRouter([
 {
   path:'/testnutricional',
   element:<TestNutricional/>,
+  errorElement:<div>404</div>
+},
+{
+  path:'/menu',
+  element:<Menu/>,
   errorElement:<div>404</div>
 }]);
 

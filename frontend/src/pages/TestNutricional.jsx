@@ -1,7 +1,7 @@
 import { Button, Paper, Grid, Avatar, Typography, TextField, FormControl, Container, Select, MenuItem, InputLabel } from "@mui/material";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
-import { useLocation } from "react-router-dom"
+import { useLocation, useNavigate } from "react-router-dom"
 import moment from 'moment';
 
 const TestNutricional = ()=>{
@@ -10,10 +10,11 @@ const TestNutricional = ()=>{
     const fecha = moment().format('YYYY-MM-DD');
     const paperStyle = {padding:20, height:'90vh', width:1200, margin:'20px auto', backgroundColor:'white'};
     const avatarStyle = {backgroundColor:'white'};
-    const [datos, setDatos] = useState({fecha_realizado: fecha, habitos_alimenticios:"", metas_nutricionales:"", necesidades:""});
     const [habitos, setHabitos] = useState({actividad:"", otro:""});
     const [metas, setMetas] = useState({altura:0, pesoActual:0, pesoMeta:0});
     const [necesidades, setNecesidades] = useState({medicamento:"", condicion:""});
+    const [id_usuario, setId] = useState(0);
+    const navigate = useNavigate();
 
     const handleHabitos = e =>{
         setHabitos({...habitos,[e.target.name]: e.target.value });
@@ -25,21 +26,43 @@ const TestNutricional = ()=>{
     }
     const handleNecesidades = e =>{
         setNecesidades({...necesidades, [e.target.name]: e.target.value});
-
     }
 
     const handleSubmit = async(e)=>{
         e.preventDefault();
-        let habitosActual = habitos.actividad + " " + habitos.otro;
-        let metasActual = `altura ${metas.altura} peso actual ${metas.pesoActual} peso meta ${metas.pesoMeta}`;
-        let necesidadesActual = necesidades.medicamento + " y condicion fisica " + necesidades.condicion;
-        setDatos({fecha_realizado:fecha, habitos_alimenticios:habitosActual, metas_nutricionales:metasActual, necesidades:necesidadesActual});
-        console.log(necesidades);
-        console.log(habitos);
-        console.log(metas);
-        console.log(datos);
+        var habitosActual = habitos.actividad + " " + habitos.otro;
+        var metasActual = `altura ${metas.altura} peso actual ${metas.pesoActual} peso meta ${metas.pesoMeta}`;
+        var necesidadesActual = necesidades.medicamento + " y condicion fisica " + necesidades.condicion;
+        const datosActual = {fecha_realizado:fecha, habitos_alimenticios:habitosActual, metas_nutricionales:metasActual, necesidades:necesidadesActual};
+        if (id_usuario) {
+            const res = await fetch(`http://localhost:4000/testnutricional/${id_usuario}`,
+            {
+                method: 'POST', body:JSON.stringify(datosActual), 
+                headers: { "Content-Type": "application/json" } 
+            });
+            try {
+                const data = await res.text();
+                console.log(data);
+                navigate('/menus',{state:{correo:correo}});
+            } catch (error) {
+                console.log(error);
+            }
+        }
     }
-
+    const validEmail = new RegExp(
+        '^[a-zA-Z0-9._:$!%-]+@[a-zA-Z0-9.-]+.[a-zA-Z]$'
+     );
+    const obtenerUsuario = async()=>{
+        if (validEmail.test(correo)) {
+            const res = await fetch(`http://localhost:4000/usuario/${correo}`,{headers:{ "Content-Type": "application/json" }});
+            const data = await res.json();
+            const { id_usuario } = data;
+            setId(id_usuario);
+        }
+    }
+    useEffect(()=>{
+        obtenerUsuario();
+    },[]);
     return(
        <Grid>
         <Paper elevation={3} style={paperStyle}>
