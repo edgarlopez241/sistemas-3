@@ -67,7 +67,7 @@ const Menu = ()=>{
                 Ver plan nutricional
                 </Button>
                 <Button variant="outlined" sx={{margin:1}} color="success"
-                onClick={()=>{console.log(usuario.rol,usuario.id_usuario)}}>
+                onClick={()=>{navigate('/gestionarusuario',{state:{correo:correo}})}}>
                 Gestionar Usuario
                 </Button>
                 <Button variant="outlined" sx={{margin:1}} color="success"
@@ -99,5 +99,4 @@ const Menu = ()=>{
         </Grid>
     )
 }
-//TODO que vea el admin el test y ponga el plan y ponga un seguimiento
 export default Menu

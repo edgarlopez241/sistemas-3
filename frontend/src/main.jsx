@@ -8,6 +8,7 @@ import Login from './pages/Login.jsx'
 import TestNutricional from './pages/TestNutricional.jsx'
 import Register from './pages/Register.jsx'
 import Menu from './pages/Menu.jsx'
+import GestionarUsuario from './pages/GestionarUsuario.jsx'
 
 const router = createBrowserRouter([
 {
@@ -34,6 +35,11 @@ const router = createBrowserRouter([
 {
   path:'/menu',
   element:<Menu/>,
+  errorElement:<div>404</div>
+},
+{
+  path:'/gestionarusuario',
+  element:<GestionarUsuario/>,
   errorElement:<div>404</div>
 }]);
 
