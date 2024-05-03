@@ -1,10 +1,8 @@
 import React, { useState } from 'react';
-import Container from '@mui/material/Container';
-import Box from '@mui/material/Box';
-import Button from '@mui/material/Button';
-import TextField from '@mui/material/TextField';
+import { Avatar, Box, Button, Grid, Paper, TextField, Typography } from "@mui/material";
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { FormControl, InputLabel, Select, MenuItem } from "@mui/material";
+import { Link } from "react-router-dom";
 
 const theme = createTheme({
   palette: {
@@ -21,6 +19,9 @@ const theme = createTheme({
   },
 });
 
+const paperStyle = {padding:20, minHeight:'80vh', width:300, margin:'20px auto', backgroundColor:'#AAB28C', color:'white'};
+
+
 function Register() {
   const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('');
@@ -36,17 +37,17 @@ function Register() {
     event.preventDefault();
   
     const user = {
-      firstName: firstName,
-      lastName: lastName,
-      email: email,
-      password: password,
-      birthDate: birthDate,
-      gender: gender,
-      phoneNumber: phoneNumber,
-      role: role,
+      nombre: firstName,
+      apellido: lastName,
+      correo: email,
+      password: String(password),
+      fecha_nacimiento: birthDate,
+      genero: gender,
+      telefono: phoneNumber,
+      rol: role,
     };
   
-    fetch('http://localhost:5000/register', {
+    fetch('http://localhost:4000/usuario', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -101,8 +102,16 @@ function Register() {
 
   return (
     <ThemeProvider theme={theme}>
-      <Container component="main" maxWidth="xs">
+       <Grid>
+        <Paper elevation={10} style={paperStyle}>
+          <h2>Registro</h2>
+          <Grid align='center'>
+            <Typography variant='5'>My Health</Typography>
+            <h6>Nutrition Subscription Service</h6>
+            <Avatar alt="Logo" src="src/assets/nutrition.png" sx={{ width: 56, height: 56 }}/>
         <Box component="form" onSubmit={handleSubmit} noValidate>
+        
+        
           <TextField
             variant="outlined"
             margin="normal"
@@ -114,7 +123,7 @@ function Register() {
             autoFocus
             value={firstName}
             onChange={(e) => setFirstName(e.target.value)}
-            sx={{ '& .MuiOutlinedInput-root': { '& fieldset': { borderColor: '#ffffff' } } }}
+            sx={{display:'block', margin:"0.5rem 0"}}
             InputLabelProps={{ style: { color: '#ffffff' } }}
             error={submitted && !validateName(firstName)}
             helperText={submitted && !validateName(firstName) ? (firstName ? 'El nombre solo debe contener letras' : 'El campo nombre no puede estar vacío') : ''}
@@ -129,7 +138,7 @@ function Register() {
             name="apellido"
             value={lastName}
             onChange={(e) => setLastName(e.target.value)}
-            sx={{ '& .MuiOutlinedInput-root': { '& fieldset': { borderColor: '#ffffff' } } }}
+            sx={{display:'block', margin:"0.5rem 0"}}
             InputLabelProps={{ style: { color: '#ffffff' } }}
             error={submitted && !validateName(lastName)}
             helperText={submitted && !validateName(lastName) ? (lastName ? 'Apellido solo debe contener letras' : 'El campo apellido no puede estar vacío') : ''}
@@ -145,7 +154,7 @@ function Register() {
             autoComplete="email"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
-            sx={{ '& .MuiOutlinedInput-root': { '& fieldset': { borderColor: '#ffffff' } } }}
+            sx={{display:'block', margin:"0.5rem 0"}}
             InputLabelProps={{ style: { color: '#ffffff' } }}
             error={submitted && !validateEmail()}
             helperText={submitted && !validateEmail() ? (email ? 'Formato de correo inválido' : 'El campo correo electrónico no puede estar vacío') : ''}
@@ -162,7 +171,7 @@ function Register() {
             autoComplete="current-password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
-            sx={{ '& .MuiOutlinedInput-root': { '& fieldset': { borderColor: '#ffffff' } } }}
+            sx={{display:'block', margin:"0.5rem 0"}}
             InputLabelProps={{ style: { color: '#ffffff' } }}
             error={submitted && !validatePassword()}
             helperText={submitted && !validatePassword() ? (password ? 'La contraseña debe tener al menos 8 caracteres, contener al menos una letra mayúscula, una letra minúscula, un número, y un carácter especial' : 'El campo contraseña no puede estar vacío') : ''}
@@ -182,11 +191,11 @@ function Register() {
             }}
             value={birthDate}
             onChange={(e) => setBirthDate(e.target.value)}
-            sx={{ '& .MuiOutlinedInput-root': { '& fieldset': { borderColor: '#ffffff' } } }}
+            sx={{display:'block', margin:"0.5rem 0"}}
             error={submitted && !validateBirthDate()}
             helperText={submitted && !validateBirthDate() ? (birthDate ? 'Debes tener al menos 15 años de edad para registrarte' : 'El campo fecha de nacimiento no puede estar vacío') : ''}
           />
-          <FormControl variant="outlined" margin="normal" required fullWidth error={submitted && !validateGender()}>
+          <FormControl variant="outlined" margin="normal" required fullWidth error={submitted && !validateGender()} sx={{display:'block', margin:"0.5rem 0"}}>
   <InputLabel id="gender-label" style={{ color: '#ffffff' }}>Género</InputLabel>
   <Select
     labelId="gender-label"
@@ -220,21 +229,24 @@ function Register() {
             name="phoneNumber"
             value={phoneNumber}
             onChange={(e) => setPhoneNumber(e.target.value)}
-            sx={{ '& .MuiOutlinedInput-root': { '& fieldset': { borderColor: '#ffffff' } } }}
+            sx={{display:'block', margin:"0.5rem 0"}}
             InputLabelProps={{ style: { color: '#ffffff' } }}
             error={submitted && !validatePhoneNumber()}
             helperText={submitted && !validatePhoneNumber() ? (phoneNumber ? 'El teléfono solo debe contener números' : 'El campo teléfono no puede estar vacío') : ''}
           />
           <Button
-            type="submit"
-            fullWidth
-            variant="contained"
-            color="primary"
-          >
-            Register
-          </Button>
-        </Box>
-      </Container>
+                type="submit"
+                fullWidth
+                variant="contained"
+                color="success"
+              >
+                Register
+              </Button>
+          </Box>
+            <Link>¿Ya tienes una cuenta? ¡Inicia sesión!</Link>
+          </Grid>
+        </Paper>
+      </Grid>
     </ThemeProvider>
   );
 }
