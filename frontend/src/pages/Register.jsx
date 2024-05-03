@@ -243,7 +243,7 @@ function Register() {
                 Register
               </Button>
           </Box>
-            <Link>¿Ya tienes una cuenta? ¡Inicia sesión!</Link>
+            <Link to={'/login'}>¿Ya tienes una cuenta? ¡Inicia sesión!</Link>
           </Grid>
         </Paper>
       </Grid>
