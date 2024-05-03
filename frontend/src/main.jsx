@@ -9,6 +9,7 @@ import TestNutricional from './pages/TestNutricional.jsx'
 import Register from './pages/Register.jsx'
 import Menu from './pages/Menu.jsx'
 import GestionarUsuario from './pages/GestionarUsuario.jsx'
+import Subscription from './pages/Subscription.jsx';
 
 const router = createBrowserRouter([
 {
@@ -41,7 +42,14 @@ const router = createBrowserRouter([
   path:'/gestionarusuario',
   element:<GestionarUsuario/>,
   errorElement:<div>404</div>
-}]);
+},
+{
+  path:'/subscription',
+  element:<Subscription/>,
+  errorElement:<div>404</div>
+},
+]);
+
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>

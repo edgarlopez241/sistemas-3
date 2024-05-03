@@ -25,7 +25,7 @@ const Login = ()=>{
             console.log(data);
             const {match} = data;
             if (match){
-                navigate("/menu", {state:{correo: usuario.correo}});
+                navigate("/subscription", {state:{correo: usuario.correo}});
             }
             else{
                 setValidado("Usuario o contraseña no valido");
