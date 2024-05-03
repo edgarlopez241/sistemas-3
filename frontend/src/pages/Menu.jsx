@@ -19,7 +19,7 @@ const imageData = [
 const botonAdmin = ({rol})=>{
     return(
         <>
-        {rol==='P' && <Button variant="outlined" sx={{margin:1}} color="success"
+        {rol==='A' && <Button variant="outlined" sx={{margin:1}} color="success"
         onClick={()=>{console.log(usuario.rol,usuario.id_usuario)}}>
         Ver Test y generar planes
         </Button>}
