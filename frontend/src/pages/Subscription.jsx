@@ -1,3 +1,4 @@
+import PricingList from '../../components/PricingList/index.jsx';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 
 const theme = createTheme({
