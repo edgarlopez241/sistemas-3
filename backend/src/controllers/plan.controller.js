@@ -41,7 +41,7 @@ const modificarPlan = async (req,res,next)=>{
         const { id_usuario } = req.params;
         const { descripcion } = req.body;
 
-        const result = await pool.query('UPDATE public."PlanNutricional" SET descripcion=$1 WHERE id_usuario=$2;',
+        const result = await pool.query('UPDATE public."PlanNutricional" SET descripcion=$1 WHERE id_usuario=$2 RETURNING *;',
         [
             descripcion,
             id_usuario

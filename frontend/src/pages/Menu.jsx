@@ -63,7 +63,7 @@ const Menu = ()=>{
                 Test nutricional
                 </Button>
                 <Button variant="outlined" sx={{margin:1}} color="success"
-                onClick={()=>{console.log(usuario.rol,usuario.id_usuario)}}>
+                onClick={()=>{navigate('/verplan',{state:{correo:correo}})}}>
                 Ver plan nutricional
                 </Button>
                 <Button variant="outlined" sx={{margin:1}} color="success"
