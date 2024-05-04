@@ -6,6 +6,7 @@ import Button from "../Button";
 import MenuSvg from "../../assets/svg/MenuSvg";
 import {HamburguerMenu} from "../Design/Header"
 import { useState } from "react";
+import { Link } from 'react-router-dom'; // Import Link
 
 const Header = () => {
  const pathname = useLocation();
@@ -58,13 +59,13 @@ const Header = () => {
         </div>
             <HamburguerMenu/>
         </nav>
-                <a href="#sign-up"
+                <Link to="/register" // Replace <a> with <Link>
                    className="button hidden mr-8 text-n-1/50 transition-colors hover:text-n-1 lg:block"
                 >
                     Registrar
-                </a>
+                </Link>
 
-                <Button className="hidden lg:flex" href="#login">
+                <Button className="hidden lg:flex" href="/login">
                     Iniciar Sesion
                 </Button>
                 <Button 
@@ -78,4 +79,4 @@ const Header = () => {
   )
 }
 
-export default Header
+export default Header;
