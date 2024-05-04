@@ -21,7 +21,7 @@ const obtenerSeguimiento = async (req,res,next)=>{
     try {
         const { id_usuario } = req.params;
 
-        const result = await pool.query('SELECT * FROM public."Seguimiento" WHERE id_usuario=$1 ORDER BY fecha_seguimiento;',
+        const result = await pool.query('SELECT * FROM public."Seguimiento" WHERE id_usuario=$1 ORDER BY fecha_seguimiento DESC;',
         [id_usuario]);
 
         if (result.rows.length === 0) {

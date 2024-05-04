@@ -76,7 +76,7 @@ const Menu = ()=>{
                 Gestionar Usuario
                 </Button>
                 <Button variant="outlined" sx={{margin:1}} color="success"
-                onClick={()=>{console.log(usuario.rol,usuario.id_usuario)}}>
+                onClick={()=>{navigate('/seguimientoestado',{state:{id:usuario.id_usuario, correo:correo}})}}>
                 Seguimiento de estado
                 </Button>
                 {botonAdmin({rol:usuario.rol})}
