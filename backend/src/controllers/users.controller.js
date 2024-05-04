@@ -94,7 +94,7 @@ const obtenerDatosUsuario = async (req,res,next)=>{
 
 const obtenerPacientes = async(req,res,next)=>{
     try {
-        const result = await pool.query('SELECT id_usuario, nombre, apellido, correo, telefono, fecha_nacimiento, genero, rol FROM public."Usuario" WHERE rol=$1',['P']);
+        const result = await pool.query('SELECT id_usuario, nombre, apellido, correo, telefono, fecha_nacimiento, genero FROM public."Usuario" WHERE rol=$1',['P']);
         
         if (result.rows.length === 0) {
             return res.status(404).json({
