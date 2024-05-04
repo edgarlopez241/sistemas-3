@@ -6,7 +6,7 @@ const { insertarRecurso,
 const pool = require('../db');
 const router = Router();
 
-router.get('/recurso/:id_usuario', obtenerRecurso);
+router.get('/recurso/:id_usuario/:nombre_recurso', obtenerRecurso);
 
 router.post('/recurso/:id_usuario', insertarRecurso);
 

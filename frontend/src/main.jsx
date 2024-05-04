@@ -13,6 +13,7 @@ import Subscription from './pages/Subscription.jsx';
 import VerPlan from './pages/VerPlan.jsx'
 import AdministrarPacientes from './pages/AdministrarPacientes.jsx'
 import AdministrarPaciente from './pages/AdministrarPaciente.jsx'
+import Recurso from './pages/Recurso.jsx'
 
 const router = createBrowserRouter([
 {
@@ -65,7 +66,13 @@ const router = createBrowserRouter([
   path:'/gestionarpaciente',
   element:<AdministrarPaciente/>,
   errorElement:<div>404</div>
-}]);
+},
+{
+  path:'/recurso',
+  element:<Recurso/>,
+  errorElement:<div>404</div>
+}
+]);
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
