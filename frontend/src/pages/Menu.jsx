@@ -90,6 +90,10 @@ const Menu = () => {
                 onClick={()=>{navigate('/soporte',{state:{id:usuario.id_usuario, correo:correo}})}}>
                 Soporte
                 </Button>
+                <Button variant="outlined" sx={{margin:1}} color="success" 
+                onClick={()=>{navigate('/feedback',{state:{id:usuario.id_usuario, correo:correo}})}}>
+                    Feedback
+                </Button>
                         <Button variant="outlined" sx={buttonStyle} color="error"
                             onClick={() => { navigate('/') }}>
                             Salir

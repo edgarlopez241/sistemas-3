@@ -16,6 +16,7 @@ import AdministrarPaciente from './pages/AdministrarPaciente.jsx'
 import Recurso from './pages/Recurso.jsx'
 import SeguimientoEstado from './pages/SeguimientoEstado.jsx'
 import Soporte from './pages/Soporte.jsx'
+import Feedback from './pages/Feedback.jsx'
 
 const router = createBrowserRouter([
 {
@@ -82,6 +83,11 @@ const router = createBrowserRouter([
 {
   path:'/recurso',
   element:<Recurso/>,
+  errorElement:<div>404</div>
+},
+{
+  path:'/feedback',
+  element:<Feedback/>,
   errorElement:<div>404</div>
 }
 ]);
