@@ -2,7 +2,8 @@ const { Router } = require('express');
 const { insertarSubscripcion,
         actualizarSubscripcion,
         cambiarEstatus,
-        obtenerSubscripcion } = require('../controllers/subscription.controller');
+        obtenerSubscripcion,
+        obtenerIdUsuario } = require('../controllers/subscription.controller');
 
 const pool = require('../db');
 const router = Router();
@@ -14,5 +15,7 @@ router.post('/susbscripcion/:id_usuario', insertarSubscripcion);
 router.delete('/susbscripcion/:id_usuario', cambiarEstatus);
 
 router.put('/susbscripcion/:id_usuario', actualizarSubscripcion);
+
+router.get('/usuario/:correo', obtenerIdUsuario);
 
 module.exports = router;

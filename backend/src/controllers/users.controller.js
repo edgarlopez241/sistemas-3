@@ -1,10 +1,17 @@
 const pool = require('../db');
 
-const insertarUsuario = async(req,res,next) =>{
+const insertarUsuario = async(req,res,next) => {
     try {
-        const { nombre, apellido, correo, 
-            telefono, fecha_nacimiento, genero, password, rol} = req.body;
+        const { nombre, apellido, correo, telefono, fecha_nacimiento, genero, password, rol} = req.body;
     
+        // Verificar si el correo está registrado
+        const resultCheck = await pool.query('SELECT id_usuario FROM public."Usuario" WHERE correo=$1;', [correo]);
+        if (resultCheck.rows.length > 0) {
+            return res.status(400).json({
+                message: "El correo ya está registrado",
+            });
+        }
+
         const result = await pool.query('INSERT INTO public."Usuario"(nombre, apellido, correo, telefono, fecha_nacimiento, genero, password_hash, rol)' +
          "VALUES ($1, $2, $3, $4, $5, $6, crypt($7, gen_salt('md5')), $8);",[
             nombre, 
