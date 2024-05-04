@@ -17,10 +17,14 @@ const imageData = [
 }
 ];
 const botonAdmin = ({rol})=>{
+    let location = useLocation();
+    const {correo} = location.state;
+    const navigate = useNavigate();
+
     return(
         <>
         {rol==='A' && <Button variant="outlined" sx={{margin:1}} color="success"
-        onClick={()=>{console.log(usuario.rol,usuario.id_usuario)}}>
+        onClick={()=>{navigate('/administrarpacientes',{state:{correo:correo}})}}>
         Ver Test y generar planes
         </Button>}
         </>
@@ -63,7 +67,7 @@ const Menu = ()=>{
                 Test nutricional
                 </Button>
                 <Button variant="outlined" sx={{margin:1}} color="success"
-                onClick={()=>{console.log(usuario.rol,usuario.id_usuario)}}>
+                onClick={()=>{navigate('/verplan',{state:{correo:correo}})}}>
                 Ver plan nutricional
                 </Button>
                 <Button variant="outlined" sx={{margin:1}} color="success"

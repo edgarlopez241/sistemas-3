@@ -37,7 +37,7 @@ function Register() {
   const [submitted, setSubmitted] = useState(false);
   const [duplicateEmailError, setDuplicateEmailError] = useState(false);
   const navigate = useNavigate();
-
+  const avatarStyle = {backgroundColor:'white'};
   const handleSubmit = (event) => {
     event.preventDefault();
 
@@ -134,7 +134,7 @@ function Register() {
           <Grid align='center'>
             <Typography variant='5'>My Health</Typography>
             <h6>Nutrition Subscription Service</h6>
-            <Avatar alt="Logo" src="src/assets/nutrition.png" sx={{ width: 56, height: 56 }} />
+            <Avatar alt="Logo" src="src/assets/nutrition.png" sx={{ width: 56, height: 56 }}  style={avatarStyle}/>
             <Box component="form" onSubmit={handleSubmit} noValidate>
 
 

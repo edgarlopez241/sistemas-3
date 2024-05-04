@@ -30,9 +30,9 @@ const TestNutricional = ()=>{
 
     const handleSubmit = async(e)=>{
         e.preventDefault();
-        var habitosActual = habitos.actividad + " " + habitos.otro;
+        var habitosActual = habitos.actividad + ". " + habitos.otro;
         var metasActual = `altura ${metas.altura} peso actual ${metas.pesoActual} peso meta ${metas.pesoMeta}`;
-        var necesidadesActual = necesidades.medicamento + " y condicion fisica " + necesidades.condicion;
+        var necesidadesActual = necesidades.medicamento + ". Condiciones: " + necesidades.condicion;
         const datosActual = {fecha_realizado:fecha, habitos_alimenticios:habitosActual, metas_nutricionales:metasActual, necesidades:necesidadesActual};
         if (id_usuario) {
             const res = await fetch(`http://localhost:4000/testnutricional/${id_usuario}`,

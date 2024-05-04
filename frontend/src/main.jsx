@@ -9,6 +9,9 @@ import TestNutricional from './pages/TestNutricional.jsx'
 import Register from './pages/Register.jsx'
 import Menu from './pages/Menu.jsx'
 import GestionarUsuario from './pages/GestionarUsuario.jsx'
+import VerPlan from './pages/VerPlan.jsx'
+import AdministrarPacientes from './pages/AdministrarPacientes.jsx'
+import AdministrarPaciente from './pages/AdministrarPaciente.jsx'
 
 const router = createBrowserRouter([
 {
@@ -40,6 +43,21 @@ const router = createBrowserRouter([
 {
   path:'/gestionarusuario',
   element:<GestionarUsuario/>,
+  errorElement:<div>404</div>
+},
+{
+  path:'/verplan',
+  element:<VerPlan/>,
+  errorElement:<div>404</div>
+},
+{
+  path:'/administrarpacientes',
+  element:<AdministrarPacientes/>,
+  errorElement:<div>404</div>
+},
+{
+  path:'/gestionarpaciente',
+  element:<AdministrarPaciente/>,
   errorElement:<div>404</div>
 }]);
 
