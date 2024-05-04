@@ -13,6 +13,7 @@ import Subscription from './pages/Subscription.jsx';
 import VerPlan from './pages/VerPlan.jsx'
 import AdministrarPacientes from './pages/AdministrarPacientes.jsx'
 import AdministrarPaciente from './pages/AdministrarPaciente.jsx'
+import Recurso from './pages/Recurso.jsx'
 import SeguimientoEstado from './pages/SeguimientoEstado.jsx'
 import Soporte from './pages/Soporte.jsx'
 
@@ -77,7 +78,13 @@ const router = createBrowserRouter([
   path:'/soporte',
   element:<Soporte/>,
   errorElement:<div>404</div>
-}]);
+},
+{
+  path:'/recurso',
+  element:<Recurso/>,
+  errorElement:<div>404</div>
+}
+]);
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>

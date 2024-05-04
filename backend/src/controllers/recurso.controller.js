@@ -1,29 +1,32 @@
 const pool = require('../db');
 
-const insertarRecurso = async(req,res,next)=>{
-    try {
-        const { id_usuario } = req.params;
-        const { nombre_recurso, enlace_recurso } = req.body;
+const insertarRecurso = async (req, res) => {
+    const { id_usuario } = req.params;
+    const { nombre_recurso, enlace_recurso, estatus_recurso } = req.body;
 
-        const result = await pool.query('INSERT INTO public."Recurso"(id_usuario, nombre_recurso, enlace_recurso, estatus_recurso) VALUES ($1, $2, $3, $4);',
-        [
-            id_usuario,
-            nombre_recurso,
-            enlace_recurso,
-            'A'
-        ]);
-        res.json(result.rowCount);
+    try {
+        const result = await pool.query(
+            'INSERT INTO "Recurso" (id_usuario, nombre_recurso, enlace_recurso, estatus_recurso) VALUES ($1, $2, $3, $4)',
+            [id_usuario, nombre_recurso, enlace_recurso, estatus_recurso]
+        );
+
+        if (result.rowCount === 0) {
+            return res.status(500).json({ message: 'Error al insertar el recurso' });
+        }
+
+        return res.status(201).json({ message: 'Recurso insertado correctamente' });
     } catch (error) {
-        next(error);
+        console.error(error);
+        return res.status(500).json({ message: 'Error interno del servidor', error: error.message });
     }
 };
 
 const obtenerRecurso = async (req,res,next)=>{
     try {
-        const { id_usuario } = req.params;
+        const { id_usuario, nombre_recurso } = req.params;
 
-        const result = await pool.query('SELECT * FROM public."Recurso" WHERE id_usuario=$1' + " AND estatus_recurso='A';",
-        [id_usuario]);
+        const result = await pool.query('SELECT * FROM public."Recurso" WHERE id_usuario=$1 AND nombre_recurso=$2 AND estatus_recurso=\'A\';',
+        [id_usuario, nombre_recurso]);
 
         if (result.rows.length === 0) {
             return res.status(404).json({
