@@ -2,6 +2,7 @@ import { Grid, Paper, Avatar, Button, AppBar, Container, Toolbar, ImageList, Ima
 import { useLocation, useNavigate } from "react-router-dom"
 import { useEffect, useState } from "react";
 
+
 const imageData = [
 {
     img:'src/assets/services/service-1.jpg',

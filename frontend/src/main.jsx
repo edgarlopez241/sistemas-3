@@ -47,8 +47,10 @@ const router = createBrowserRouter([
   path:'/subscription',
   element:<Subscription/>,
   errorElement:<div>404</div>
-},
+}
 ]);
+
+
 
 
 ReactDOM.createRoot(document.getElementById('root')).render(
