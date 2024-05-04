@@ -57,7 +57,7 @@ const Login = ()=>{
                 sx={{display:'block', margin:"0.5rem 0"}}
                 name="password"
                 onChange={handleChange}/>
-                <Button variant="contained" color="success" type="submit">Iniciar seción</Button>
+                <Button variant="contained" color="success" type="submit">Iniciar sesión</Button>
             </form>
             <Link to={'/register'}>No tiene una cuenta? Registrese!</Link>
             <div>{validado}</div>

@@ -15,7 +15,6 @@ const VerPlan = ()=>{
      );
 
     const obtenerUsuario = async()=>{
-        console.log(correo);
         if (validEmail.test(correo)) {
             const res = await fetch(`http://localhost:4000/usuario/${correo}`,{headers:{ "Content-Type": "application/json" }});
             const data = await res.json();
