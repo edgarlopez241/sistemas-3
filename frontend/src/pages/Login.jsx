@@ -74,7 +74,7 @@ const Login = () => {
                             onChange={handleChange} />
                         <Button variant="contained" color="success" type="submit">Iniciar seción</Button>
                     </form>
-                    <Link>No tiene una cuenta? Registrese!</Link>
+                    <Link to={"/register"}>No tiene una cuenta? Registrese!</Link>
                     <div>{validado}</div>
                 </Grid>
             </Paper>
