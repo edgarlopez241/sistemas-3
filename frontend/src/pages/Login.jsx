@@ -40,7 +40,7 @@ const Login = () => {
                         navigate("/subscription");
                     } else {
                         // Si el usuario ya tiene una suscripción, redirigirlo a la página de inicio
-                        navigate('/Menu');
+                        navigate('/Menu', { state: { correo: usuario.correo } });
                     }
                 }
                 else {

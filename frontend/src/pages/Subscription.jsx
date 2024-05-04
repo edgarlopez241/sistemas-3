@@ -4,6 +4,7 @@ import { List, ListItem } from "@mui/material";
 import Avatar from '@mui/material/Avatar';
 import { useState, useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 const theme = createTheme({
   palette: {
@@ -21,6 +22,8 @@ const Subscription = () => {
   const buttonStyle = { marginTop: '1rem' };
   const [subscription, setSubscription] = useState(null);
   const userId = localStorage.getItem('userId');
+  const navigate = useNavigate();
+  const correo = localStorage.getItem('correo');
 
 
   const handleSubscribe = async () => {
@@ -58,6 +61,7 @@ const Subscription = () => {
 
     console.log('Success:', data);
     setSubscription(data);
+    navigate('/Menu', { state: { correo: correo } });
   }
 
   return (

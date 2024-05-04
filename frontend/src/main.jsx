@@ -9,10 +9,10 @@ import TestNutricional from './pages/TestNutricional.jsx'
 import Register from './pages/Register.jsx'
 import Menu from './pages/Menu.jsx'
 import GestionarUsuario from './pages/GestionarUsuario.jsx'
+import Subscription from './pages/Subscription.jsx';
 import VerPlan from './pages/VerPlan.jsx'
 import AdministrarPacientes from './pages/AdministrarPacientes.jsx'
 import AdministrarPaciente from './pages/AdministrarPaciente.jsx'
-import Subscription from './pages/Subscription.jsx';
 
 const router = createBrowserRouter([
 {
@@ -47,6 +47,11 @@ const router = createBrowserRouter([
   errorElement:<div>404</div>
 },
 {
+  path:'/subscription',
+  element:<Subscription/>,
+  errorElement:<div>404</div>
+},
+{
   path:'/verplan',
   element:<VerPlan/>,
   errorElement:<div>404</div>
@@ -60,16 +65,7 @@ const router = createBrowserRouter([
   path:'/gestionarpaciente',
   element:<AdministrarPaciente/>,
   errorElement:<div>404</div>
-},
-{
-  path:'/subscription',
-  element:<Subscription/>,
-  errorElement:<div>404</div>
-}
-]);
-
-
-
+}]);
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
