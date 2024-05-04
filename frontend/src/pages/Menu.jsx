@@ -86,6 +86,10 @@ const Menu = () => {
                             Recurso
                         </Button>
                         {botonAdmin({ rol: usuario.rol })}
+                <Button variant="outlined" sx={{margin:1}} color="success"
+                onClick={()=>{navigate('/soporte',{state:{id:usuario.id_usuario, correo:correo}})}}>
+                Soporte
+                </Button>
                         <Button variant="outlined" sx={buttonStyle} color="error"
                             onClick={() => { navigate('/') }}>
                             Salir

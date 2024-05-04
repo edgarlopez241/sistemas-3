@@ -1,6 +1,5 @@
 import { Button, Paper, Grid, Avatar, Typography, TextField, FormControl, Container, Select, MenuItem, InputLabel } from "@mui/material";
 import { useEffect, useState } from "react";
-
 import { useLocation, useNavigate } from "react-router-dom"
 import moment from 'moment';
 
@@ -66,7 +65,7 @@ const TestNutricional = ()=>{
     return(
        <Grid justifyContent="center">
         <Paper elevation={3} style={paperStyle}>
-        <Grid  container direction="column" align="center">
+        <Grid  container direction="row" align="center">
         <Avatar style={avatarStyle} alt="Logo" src="src/assets/nutrition.png" sx={{ width: 56, height: 56 }}/>
         <Typography>Test Nutricional Información Personal</Typography>
         </Grid>
