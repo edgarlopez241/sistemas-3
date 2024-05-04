@@ -14,6 +14,7 @@ import VerPlan from './pages/VerPlan.jsx'
 import AdministrarPacientes from './pages/AdministrarPacientes.jsx'
 import AdministrarPaciente from './pages/AdministrarPaciente.jsx'
 import Recurso from './pages/Recurso.jsx'
+import SeguimientoEstado from './pages/SeguimientoEstado.jsx'
 
 const router = createBrowserRouter([
 {
@@ -65,6 +66,11 @@ const router = createBrowserRouter([
 {
   path:'/gestionarpaciente',
   element:<AdministrarPaciente/>,
+  errorElement:<div>404</div>
+},
+{
+  path:'/seguimientoestado',
+  element:<SeguimientoEstado/>,
   errorElement:<div>404</div>
 },
 {
