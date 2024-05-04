@@ -28,7 +28,7 @@ const botonAdmin = ({ rol }) => {
         <>
             {rol === 'A' && <Button variant="outlined" sx={buttonStyle} color="success"
                 onClick={() => { navigate('/administrarpacientes', { state: { correo: correo } }) }}>
-                Ver Test y generar planes
+                Pacientes
             </Button>}
         </>
     );
