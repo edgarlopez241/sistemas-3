@@ -31,6 +31,7 @@ const AdministrarPaciente = ()=>{
             try {
                 const data = await res.text();
                 if (data){
+                    alert("Enviado con exito");
                     console.log(data);
                 }
             } catch (error) {
@@ -49,6 +50,7 @@ const AdministrarPaciente = ()=>{
             });
             const data = await res.text();
             if (data){
+                alert("Enviado con exito");
                 console.log(data);
             }
         }

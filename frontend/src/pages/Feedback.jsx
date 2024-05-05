@@ -26,6 +26,7 @@ const Feedback = ()=>{
             });
             const data = await res.text();
             if (data){
+                alert("Enviado con exito");
                 console.log(data);
             }
         }
